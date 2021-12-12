@@ -15,6 +15,7 @@ import com.example.shoppinglistapplication.data.Repository
 import com.example.shoppinglistapplication.databinding.MainFragmentBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+/*Continue from last commit*/
 class MainFragment : Fragment() {
 
     private val viewModel by viewModels<MainViewModel>{
