@@ -1,7 +1,5 @@
 package com.example.shoppinglistapplication.ui.cart
 
-import android.app.Application
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,16 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapplication.R
 import com.example.shoppinglistapplication.data.Repository
 import com.example.shoppinglistapplication.databinding.CartFragmentBinding
-import com.example.shoppinglistapplication.ui.main.MainViewModel
-import com.example.shoppinglistapplication.ui.main.MainViewModelFactory
-import com.example.shoppinglistapplication.ui.main.ProductClick
-import com.example.shoppinglistapplication.ui.main.ProductsListAdapter
 
 class CartFragment : Fragment() {
 
@@ -31,8 +24,8 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllProducts()
-        viewModel.listForRecycler.observe(viewLifecycleOwner,{
+
+        viewModel.cartProductsList.observe(viewLifecycleOwner,{
                 productData->
             viewModelAdapter?.itemsData = productData
         })
@@ -54,6 +47,8 @@ class CartFragment : Fragment() {
         }, DeleteProductClick {
             if(it.quantity.equals(1)) {
                 viewModel.deleteProduct(it.id)
+            }else{
+                viewModel.updateProdcut(it.quantity-1,it.id)
             }
         })
 

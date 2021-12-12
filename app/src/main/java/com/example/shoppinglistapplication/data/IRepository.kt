@@ -7,7 +7,7 @@ import com.example.shoppinglistapplication.model.response.ProductsResponseItem
 import retrofit2.Response
 
 interface IRepository {
-    suspend fun cartProductdSelection() : LiveData<List<CartProductsItem>>
+    val cartProducts : LiveData<List<CartProductsItem>>
     suspend fun addProductDatabase(cardProductsItem: CartProductsItem)
     suspend fun upDateProductDatabase(addquatinty : Int , id : Int)
     suspend fun deleteProductDataBase(id : Int)

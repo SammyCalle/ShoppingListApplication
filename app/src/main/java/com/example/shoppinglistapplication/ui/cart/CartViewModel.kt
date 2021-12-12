@@ -13,14 +13,7 @@ import kotlinx.coroutines.withContext
 
 class CartViewModel(private val repository: IRepository) : ViewModel() {
 
-    val listForRecycler = MutableLiveData<List<CartProductsItem>>()
-    fun getAllProducts(){
-        viewModelScope.launch {
-            withContext(Dispatchers.Main){
-                listForRecycler.value =repository.cartProductdSelection().value
-            }
-        }
-    }
+    val cartProductsList = repository.cartProducts
 
     fun deleteProduct(productId : Int){
         viewModelScope.launch {

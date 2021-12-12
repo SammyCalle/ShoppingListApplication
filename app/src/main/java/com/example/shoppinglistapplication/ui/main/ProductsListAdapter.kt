@@ -27,6 +27,7 @@ class ProductsListAdapter(val callback : ProductClick): RecyclerView.Adapter<Lis
     override fun onBindViewHolder(holder: ListItemsViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.productsItem = itemsData[position]
+            it.productCallBack = callback
         }
     }
 

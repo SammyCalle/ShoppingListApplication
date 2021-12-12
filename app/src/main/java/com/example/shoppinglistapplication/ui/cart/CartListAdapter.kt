@@ -31,6 +31,8 @@ class CartListAdapter(val addcallback : AddProductClick, val deletecallback : De
     override fun onBindViewHolder(holder: CartItemsViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.productsItem = itemsData[position]
+            it.addCallBack = addcallback
+            it.deleteCallBack = deletecallback
         }
     }
 

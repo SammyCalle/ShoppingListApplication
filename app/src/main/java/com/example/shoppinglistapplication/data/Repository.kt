@@ -28,7 +28,8 @@ class Repository(private val database: ToDoDatabase,private val ioDispatcher
         }
     }
 
-    override suspend fun cartProductdSelection() : LiveData<List<CartProductsItem>> = database.itemsDao().getCartProducts()
+    override val cartProducts : LiveData<List<CartProductsItem>> =
+        database.itemsDao().getCartProducts()
 
     override suspend fun addProductDatabase(cartProductsItem: CartProductsItem) {
         withContext(ioDispatcher){
