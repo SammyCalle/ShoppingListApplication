@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="productsItem"
+            type="com.example.shoppinglistapplication.model.domain.ProductsItem"
+            />
+        <variable
+            name="rateValue"
+            type="com.example.shoppinglistapplication.model.domain.Rating" />
+        <variable
+            name="productCallBack"
+            type="com.example.shoppinglistapplication.ui.main.ProductClick" />
+    </data>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        app:strokeWidth="1dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        app:strokeColor="@color/material_on_surface_stroke"
+        android:layout_height="wrap_content">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Media -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            app:productImage = "@{productsItem.image}"
+            android:scaleType="centerCrop"
+            android:contentDescription="@{productsItem.description}"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Title, secondary and supporting text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@{productsItem.title}"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{String.valueOf(productsItem.price)}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:maxLines="5"
+                android:text="@{productsItem.description}"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_gravity="center"
+                android:rating="@{rateValue.rate}"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:isIndicator="true"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> productCallBack.onClick(productsItem)}"
+                android:text="Add to the card"
+                style="?attr/buttonBarPositiveButtonStyle"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
